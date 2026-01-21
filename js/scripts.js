@@ -110,4 +110,11 @@
         });
     });
 
+    $(window).on("scroll", function() {
+    if ($("#about-section").offset().top < $(window).scrollTop() + $(window).height() - 100) {
+        $("#about-section").addClass("visible");
+    }
+    });
+
+
 })(jQuery);
