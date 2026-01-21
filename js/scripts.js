@@ -47,7 +47,7 @@
 
     // Scroll to first element
     $('#lead-down span').click(function() {
-        var scrollDistance = $('#about').next().offset().top;
+        var scrollDistance = $('#about').offset().top;
         $('html, body').animate({
             scrollTop: scrollDistance + 'px'
         }, 500);
@@ -64,9 +64,21 @@
             $(this).addClass('vtimeline-content').wrap('<div class="vtimeline-point"><div class="vtimeline-block"></div></div>');
         });
 
-        // Add icons to each block
+        // Add icons to each block with specific icons based on company
         $this.find('.vtimeline-point').each(function() {
-            $(this).prepend('<div class="vtimeline-icon"><i class="fa fa-map-marker"></i></div>');
+            var companyName = $(this).find('h3').text().toLowerCase();
+            var iconClass = 'fa fa-briefcase'; // Default icon
+            
+            // Choose specific icons based on company
+            if (companyName.includes('massachusetts') || companyName.includes('hospital')) {
+                iconClass = 'fa fa-hospital-o'; // Hospital icon for MGH
+            } else if (companyName.includes('iit') || companyName.includes('technology')) {
+                iconClass = 'fa fa-graduation-cap'; // Education/research icon for IIT
+            } else if (companyName.includes('geeks')) {
+                iconClass = 'fa fa-code'; // Code icon for GeeksforGeeks
+            }
+            
+            $(this).prepend('<div class="vtimeline-icon"><i class="' + iconClass + '"></i></div>');
         });
 
         // Add dates to the timeline if exists
