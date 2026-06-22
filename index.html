@@ -1,369 +1,582 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vishwani Singh - Applied AI Scientist</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishwani Singh - AI Applied Scientist</title>
+<meta name="description" content="Vishwani Singh - AI Applied Scientist working on machine learning for wearable and movement data in clinical populations. IMU foundation models, EEG biomarkers, digital health.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1320;
+    --bg-soft:#111a2b;
+    --surface:#141e30;
+    --surface-2:#18243a;
+    --ink:#eaf0f8;
+    --muted:#93a1b6;
+    --faint:#5d6b80;
+    --line:#22304a;
+    --signal:#5fd0c5;   /* the trace */
+    --pulse:#f3a35c;    /* the biomarker accent */
+    --link:#8fb0ff;
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--signal);color:var(--bg)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(13,19,32,.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:14px;letter-spacing:.04em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 0 var(--signal);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(95,208,197,.5)}70%{box-shadow:0 0 0 7px rgba(95,208,197,0)}100%{box-shadow:0 0 0 0 rgba(95,208,197,0)}}
+  .nav-links{display:flex;gap:26px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--signal)}
+  .nav-toggle{display:none}
+
+  /* ---------- hero ---------- */
+  header{position:relative;padding:96px 0 64px;overflow:hidden}
+  .avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid var(--signal);box-shadow:0 0 0 4px rgba(95,208,197,.12),0 8px 28px rgba(0,0,0,.45);margin-bottom:26px;display:block}
+  .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);margin-bottom:22px}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(44px,8vw,86px);line-height:.98;letter-spacing:-.02em}
+  .thesis{font-family:var(--display);font-weight:500;font-size:clamp(18px,3vw,26px);color:var(--ink);margin:26px 0 0;line-height:1.3}
+  .thesis .arrow{color:var(--pulse)}
+  .lede{max-width:620px;color:var(--muted);font-size:18px;margin-top:22px}
+  .lede strong{color:var(--ink);font-weight:600}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .btn{font-family:var(--mono);font-size:13px;letter-spacing:.03em;padding:12px 20px;border-radius:8px;border:1px solid var(--line);transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+  .btn.primary{background:var(--signal);color:#06231f;border-color:var(--signal);font-weight:600}
+  .btn.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn.ghost:hover{border-color:var(--signal);color:var(--signal)}
+
+  /* hero waveform signature */
+  .scope{position:relative;margin-top:56px;height:140px}
+  .scope svg{width:100%;height:100%;display:block;overflow:visible}
+  .grid-line{stroke:var(--line);stroke-width:1;opacity:.5}
+  .trace-bg{fill:none;stroke:var(--line);stroke-width:1.5;opacity:.55}
+  .trace-live{fill:none;stroke:var(--signal);stroke-width:2.2;filter:drop-shadow(0 0 6px rgba(95,208,197,.5))}
+  .playhead{fill:var(--pulse);filter:drop-shadow(0 0 8px rgba(243,163,92,.7))}
+  .scope-label{font-family:var(--mono);font-size:11px;fill:var(--faint);letter-spacing:.1em}
+
+  /* ---------- section frame ---------- */
+  section{padding:74px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px}
+  .sec-num{font-family:var(--mono);font-size:13px;color:var(--pulse)}
+  .sec-title{font-family:var(--display);font-weight:600;font-size:clamp(26px,4vw,38px);letter-spacing:-.01em}
+  .sec-divider{height:1px;background:var(--line);position:relative;margin:0 auto;max-width:var(--maxw)}
+  .sec-divider::after{content:"";position:absolute;left:0;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--pulse);opacity:.8}
+
+  /* ---------- through-line ---------- */
+  .through{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}
+  .through p{color:var(--muted);font-size:18px;margin-bottom:18px}
+  .through p strong{color:var(--ink);font-weight:600}
+  .chain{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:24px}
+  .chain h4{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:18px}
+  .chain-step{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .chain-step:last-child{border-bottom:none}
+  .chain-step .k{font-family:var(--mono);font-size:13px;color:var(--signal);min-width:118px}
+  .chain-step .v{font-size:14px;color:var(--ink)}
+
+  /* ---------- publications ---------- */
+  .pub{display:grid;grid-template-columns:118px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line);align-items:start}
+  .pub:last-child{border-bottom:1px solid var(--line)}
+  .pub-meta{font-family:var(--mono);font-size:12px;color:var(--faint)}
+  .pub-year{display:block;color:var(--ink);font-size:14px;margin-bottom:8px}
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:3px 9px;border-radius:20px;border:1px solid var(--line)}
+  .tag.review{color:var(--pulse);border-color:rgba(243,163,92,.4)}
+  .tag.preprint{color:var(--signal);border-color:rgba(95,208,197,.4)}
+  .tag.prep{color:var(--muted)}
+  .tag.published{color:var(--link);border-color:rgba(143,176,255,.4)}
+  .pub-title{font-family:var(--display);font-weight:500;font-size:19px;line-height:1.35;margin-bottom:6px}
+  .pub-venue{color:var(--muted);font-size:14px}
+  .pub-authors{color:var(--faint);font-size:13px;margin-top:8px;font-family:var(--mono)}
+  .pub-authors b{color:var(--signal);font-weight:500}
+  .pub-link{font-family:var(--mono);font-size:12px;color:var(--signal);margin-top:10px;display:inline-block}
+  .pub-link:hover{text-decoration:underline}
+
+  /* ---------- projects ---------- */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .card{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden;transition:border-color .25s,transform .25s;display:flex;flex-direction:column}
+  .card:hover{border-color:var(--signal);transform:translateY(-3px)}
+  .thumb{height:170px;background:var(--bg-soft);border-bottom:1px solid var(--line);overflow:hidden;position:relative}
+  .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .thumb.contain img{object-fit:contain;object-position:center;padding:10px;background:#fff}
+  .thumb.withheld{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#101a2c,#16223a)}
+  .thumb.withheld svg{width:100%;height:100%;position:absolute;inset:0;opacity:.38}
+  .thumb.withheld span{position:relative;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);text-align:center;padding:0 16px;text-shadow:0 1px 4px rgba(7,12,20,.85)}
+  .card-body{padding:26px;display:flex;flex-direction:column;flex-grow:1}
+  .card .ptag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .card h3{font-family:var(--display);font-weight:600;font-size:21px;line-height:1.2;margin-bottom:12px}
+  .card p{color:var(--muted);font-size:15px;flex-grow:1}
+  .metric{margin-top:18px;display:flex;align-items:baseline;gap:10px}
+  .metric .big{font-family:var(--mono);font-weight:600;font-size:26px;color:var(--signal)}
+  .metric .lbl{font-family:var(--mono);font-size:12px;color:var(--faint)}
+  .card-foot{margin-top:18px;display:flex;gap:16px;font-family:var(--mono);font-size:12px}
+  .card-foot a{color:var(--muted);transition:color .2s}
+  .card-foot a:hover{color:var(--signal)}
+  .stack{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:14px}
+
+  /* ---------- experience ---------- */
+  .xp{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--line)}
+  .xp:last-child{border-bottom:1px solid var(--line)}
+  .xp-when{font-family:var(--mono);font-size:13px;color:var(--faint)}
+  .xp-org{font-family:var(--display);font-weight:600;font-size:20px}
+  .xp-role{color:var(--signal);font-family:var(--mono);font-size:13px;margin:4px 0 12px}
+  .xp ul{list-style:none}
+  .xp li{color:var(--muted);font-size:15px;padding-left:18px;position:relative;margin-bottom:7px}
+  .xp li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:1px;background:var(--pulse)}
+
+  /* ---------- skills ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .skill-col h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--pulse);margin-bottom:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:6px 10px;background:var(--bg-soft);transition:all .2s}
+  .chip:hover{color:var(--signal);border-color:var(--signal)}
+
+  /* ---------- contact ---------- */
+  .contact{text-align:center;padding:96px 0 40px}
+  .contact .eyebrow{justify-content:center}
+  .contact h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,52px);line-height:1.05;margin-bottom:18px}
+  .contact p{color:var(--muted);max-width:540px;margin:0 auto 30px}
+  .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--mono);font-size:12px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:760px){
+    body{font-size:16px}
+    .nav-links{display:none}
+    .through{grid-template-columns:1fr;gap:28px}
+    .grid2{grid-template-columns:1fr}
+    .skill-grid{grid-template-columns:1fr}
+    .pub{grid-template-columns:1fr;gap:10px}
+    .xp{grid-template-columns:1fr;gap:8px}
+    header{padding:64px 0 40px}
+    .scope{height:110px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .brand .dot{animation:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+<script>
+  // Try common extensions for each thumbnail, then hide the panel if none load.
+  function imgFallback(img){
+    var exts=['png','jpg','jpeg','webp','PNG','JPG','JPEG'];
+    var base=img.getAttribute('data-base');
+    var i=parseInt(img.getAttribute('data-i')||'0',10)+1;
+    if(base && i<exts.length){ img.setAttribute('data-i',String(i)); img.src=base+'.'+exts[i]; return; }
+    if(img.parentNode){ img.parentNode.style.display='none'; }
+  }
+</script>
 </head>
-
 <body>
-    <div id="mobile-menu-open" class="shadow-large">
-        <i class="fa fa-bars" aria-hidden="true"></i>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="dot"></span>VISHWANI&nbsp;SINGH</a>
+    <div class="nav-links">
+      <a href="#through">Approach</a>
+      <a href="#research">Research</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </div>
-    <!-- End #mobile-menu-toggle -->
-    <header>
-        <div id="mobile-menu-close">
-            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
-        </div>
-        <ul id="menu" class="shadow">
-            <li>
-                <a href="#about">About</a>
-            </li>
-            <li>
-                <a href="#experience">Experience</a>
-            </li>
-            <li>
-                <a href="#publications">Publications</a>
-            </li>
-            <li>
-                <a href="#projects">Projects</a>
-            </li>
-            <li>
-                <a href="#skills">Skills</a>
-            </li>
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
-        </ul>
-    </header>
-    <!-- End header -->
+  </div>
+</nav>
 
-    <div id="lead">
-        <div id="lead-content">
-            <img src="./images/profile-pic.png" alt="Vishwani Singh" class="lead-profile-pic">
-            <h1>Vishwani Singh</h1>
-            <h2>Research in NeuroAI</h2>
-        </div>
-        <div id="lead-overlay"></div>
+<header id="top">
+  <div class="wrap">
+    <img class="avatar" src="images/profile-pic.png" alt="Vishwani Singh" onerror="this.style.display='none'">
+    <div class="eyebrow">AI Applied Science · Digital Health &amp; Wearables</div>
+    <h1>Machine learning<br>on human signal.</h1>
+    <p class="thesis">Signal in <span class="arrow">→</span> interpretable biomarker out</p>
+    <p class="lede">I build ML for wearable and movement data in <strong>clinical populations</strong>, the regulated, messy, real-world kind. Currently leading an <strong>IMU foundation model</strong> at Mass General's OASIIS Lab, built to hold up on real patients where general-population models fall short.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#research">View research</a>
+      <a class="btn ghost" href="Singh_Vishwani_Resume.pdf">Download CV</a>
+      <!-- <a class="btn ghost" href="https://scholar.google.com/citations?user=_SEtWwcAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> -->
     </div>
-    <!-- End #lead -->
 
-    <section id="about" class="split-section">
-        <div class="left">
-            <h2>About Me</h2>
-            <p>
-                I am a grad student fascinated by the intersection of Neuroscience, Psychology, Coding, Mathematics, and AI. I'm on a journey to decode the brain one step at a time and use those insights to advance intelligent systems. I believe in "unblackboxing" AI by learning from the very system that inspires it—the human brain.
-            </p>
-            <p>
-                My work focuses on identifying biomarkers by transforming brain data, such as EEG or fMRI signals, into quantifiable patterns that reveal cognitive or mental states. When used as input features, these biomarkers enable AI models to match how humans think and learn, forming the foundation for general cognitive modeling. This approach bridges cutting-edge AI research with real-world clinical applications.
-            </p>
-            <p>
-                Currently, I'm working as an Applied AI Scientist Co-op at Massachusetts General Hospital's OASIIS lab, where I develop multi-task deep learning architectures including Transformers and attention mechanisms for clinical motion analysis. Working with large-scale datasets of 400+ subjects and 15,000+ XR-based movement sequences, I'm identifying clinically relevant biomechanical biomarkers in patients with upper-limb injuries. This work has taught me how to handle complex, real-world data, select appropriate AI models, optimize pipelines, and implement parallel processing for efficiency.
-            </p>
-            <p>
-                As a Research Fellow in Computational Neuroscience at IIT Delhi, I studied the network-level neural effects of interventions in patients with Major Depressive Disorder (MDD) using small-world network graph theory. I observed enhanced functional connectivity within specific brain regions, suggesting their potential as biomarkers for depression—a finding that exemplifies my commitment to making AI models more interpretable and actionable for healthcare professionals.
-            </p>
-            <p>
-                Before choosing my path in NeuroAI, I worked as a Software Engineer at GeeksforGeeks, India, where I developed valuable skills in optimizing and scaling systems for large-scale platforms, debugging (which I consider one of the most important skills), and writing clean and maintainable code. These foundational engineering skills now enable me to translate research prototypes into production-ready AI systems.
-            </p>
-            <p>
-                I'm pursuing my Master's in Artificial Intelligence at Northeastern University (4.0 GPA), which has provided me with a strong foundation in the mathematical principles of AI and their applications across diverse domains. I continue to learn, grow, and develop skills in scaling AI solutions for practical and impactful applications, with a particular focus on human-centered AI systems that support evidence-based clinical decisions while maintaining explainability and trust.
-            </p>
-            <p>
-                <strong>I'm particularly interested in opportunities in NeuroAI or AI in healthcare that involve identifying biomarkers, which in turn guide the development of smarter, interpretable, and human-centric AI systems.</strong>
-            </p>
-        </div>
-
-        <div class="right">
-            <div class="interests">
-                <h3>Research Interests</h3>
-                <ul>
-                    <li>NeuroAI & Cognitive Modeling</li>
-                    <li>Digital Biomarker Discovery</li>
-                    <li>Applied AI in Healthcare & Clinical Systems</li>
-                    <li>Explainable AI & Model Interpretability</li>
-                    <li>Human-Centered AI Design</li>
-                </ul>
-            </div>
-
-            <div class="education">
-                <h3>Education</h3>
-                <p><strong>MS in Artificial Intelligence</strong><br>Northeastern University, Boston<br>Jan 2025 – Dec 2026 (Expected)<br>GPA: 4.0/4.0</p>
-                <p><strong>B.Tech in Information Technology</strong><br>Institute of Engineering and Technology<br>Aug 2017 – Aug 2021<br>GPA: 8.52/10</p>
-            </div>
-        </div>
-    </section>
-
-    <div id="experience">
-        <h2 class="heading">Experience</h2>
-        <div id="experience-timeline">
-            <div data-date="January 2026 – Present">
-                <h3>Massachusetts General Hospital</h3>
-                <h4>Applied AI Scientist Co-op</h4>
-                <ul>
-                    <li>Developing multi-task deep learning architectures including Transformers and attention mechanisms for clinical motion analysis across 400 subjects and 15,000 XR-based movement sequences for orthopedic motion analysis.</li>
-                    <li>Engineering end-to-end machine learning pipelines with clinician-facing dashboards, integrating task-specific model heads and clinical validation frameworks to enable scalable biomechanical assessments.</li>
-                    <li>Identified clinically relevant biomechanical biomarkers through permutation testing and probabilistic analysis, enhancing model interpretability and supporting evidence-based clinical decisions.</li>
-                    <li>Deployed trained models into inference pipelines integrated with clinical tools, reducing manual evaluation time.</li>
-                    <li><strong>Skills:</strong> PyTorch, Transformers, Deep Learning, Computer Vision, MLOps, Clinical AI, Feature Engineering</li>
-                </ul>
-            </div>
-
-            <div data-date="March 2025 – December 2025">
-                <h3>Massachusetts General Hospital</h3>
-                <h4>Graduate Research Assistant</h4>
-                <ul>
-                    <li>Conducted research on ML-driven XR shoulder assessment analysis, developing novel approaches for biomechanical evaluation using extended reality data.</li>
-                    <li>Implemented parallel processing and GPU computing workflows for efficient handling of large-scale motion capture datasets.</li>
-                    <li>Collaborated with clinical researchers to validate model predictions and ensure clinical relevance of AI-derived insights.</li>
-                    <li><strong>Skills:</strong> Research Design, Data Analysis, Parallel Processing, GPU Computing, Clinical Validation</li>
-                </ul>
-            </div>
-
-            <div data-date="September 2023 – July 2024">
-                <h3>Indian Institute of Technology, Delhi</h3>
-                <h4>Senior Research Fellow</h4>
-                <ul>
-                    <li>Developed signal-processing and graph-based AI algorithms to analyze EEG connectivity, quantifying treatment effects and supporting interpretable clinical insights.</li>
-                    <li>Collaborated with AIIMS Delhi on neural data analysis to evaluate effectiveness of tDCS intervention on Major Depressive Disorder.</li>
-                    <li>Researched and constructed a novel thresholding algorithm to binarize functional connectivity matrices using small-world network metrics, identifying asymmetry, activity patterns, and treatment differences in brain networks.</li>
-                    <li>Applied graph theory, digital signal processing, and statistical analysis to extract clinically meaningful biomarkers from EEG data.</li>
-                    <li><strong>Skills:</strong> EEG Analysis, Graph Neural Networks, Signal Processing, Statistics, Computational Neuroscience</li>
-                </ul>
-            </div>
-
-            <div data-date="April 2023 – August 2023">
-                <h3>GeeksforGeeks</h3>
-                <h4>Software Engineer II</h4>
-                <ul>
-                    <li>Designed and maintained scalable backend systems supporting ML-driven search, ranking, and content discovery workflows under high-traffic conditions.</li>
-                    <li>Optimized write portal for internal team managing 0.463M posts, 0.59M improvements, 10.5K course posts, and 40K media files.</li>
-                    <li>Managed AWS S3 media restrictions for private and public buckets, ensuring compliance and avoiding copyright violations.</li>
-                    <li>Created scheduling and backdating publishing features, reducing API hits by 50% through automated content release.</li>
-                    <li>Implemented Django signals for enhanced activity tracking, optimizing storage consistency and data analysis.</li>
-                    <li>Utilized RTK Query to optimize data fetching, caching, and code maintainability.</li>
-                    <li><strong>Skills:</strong> Django, AWS, REST APIs, System Design, Backend Development</li>
-                </ul>
-            </div>
-
-            <div data-date="September 2021 – March 2023">
-                <h3>GeeksforGeeks</h3>
-                <h4>Software Engineer</h4>
-                <ul>
-                    <li>R&D ElasticSearch implementation leveraging AWS OpenSearch for efficient data retrieval, improving post search speed by 200% and time efficiency by 2.5x.</li>
-                    <li>R&D database routing methods for read-write operations using AWS RDS read replicas and primary instances, optimizing load distribution and reducing costs.</li>
-                    <li>Developed and maintained script portal for uploading 5K videos, 1K course videos, and managing media content.</li>
-                    <li>Developed and integrated custom editor plugins in CKEditor based on team requirements.</li>
-                    <li>Implemented bulk operation mechanisms in Django and frontend, enhancing UX for selecting and updating large quantities of posts.</li>
-                    <li><strong>Skills:</strong> ElasticSearch, AWS RDS, Django, React.js, Database Optimization</li>
-                </ul>
-            </div>
-        </div>
+    <div class="scope" aria-hidden="true">
+      <svg id="scopeSvg" viewBox="0 0 1000 140" preserveAspectRatio="none">
+        <line class="grid-line" x1="0" y1="70" x2="1000" y2="70"></line>
+        <path id="traceBg" class="trace-bg"></path>
+        <path id="traceLive" class="trace-live"></path>
+        <circle id="head" class="playhead" r="4" cx="0" cy="70"></circle>
+        <text class="scope-label" x="4" y="16">EEG · IMU</text>
+        <text class="scope-label" x="930" y="16">LIVE</text>
+      </svg>
     </div>
-    <!-- End #experience -->
+  </div>
+</header>
 
-    <div id="publications">
-        <h2 class="heading">Publications & Research</h2>
-        <div class="publications-container">
-            <div class="publication-block">
-                <h3>ML-Driven XR Shoulder Assessment Analysis</h3>
-                <p class="publication-details"><strong>Status:</strong> Communicated Paper, 2025 | <strong>Role:</strong> First Author</p>
-                <p class="publication-description">
-                    Developed a machine learning framework for analyzing shoulder biomechanics using extended reality (XR) data. The system employs multi-task deep learning architectures to extract clinically relevant motion patterns from 15,000+ XR-based movement sequences, enabling scalable and objective orthopedic assessments.
-                </p>
-            </div>
+<div class="sec-divider"></div>
 
-            <div class="publication-block">
-                <h3>EEG-based tDCS Analysis</h3>
-                <p class="publication-details"><strong>Type:</strong> Technical Report, 2024 | <strong>Role:</strong> First Author</p>
-                <p class="publication-description">
-                    Technical report detailing signal-processing and graph-based AI algorithms for analyzing EEG connectivity to quantify treatment effects of transcranial Direct Current Stimulation (tDCS) in patients with Major Depressive Disorder. Introduced novel thresholding algorithms using small-world network metrics to identify biomarkers for depression.
-                </p>
-            </div>
-        </div>
+<!-- THROUGH-LINE -->
+<section id="through">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">The through-line</h2></div>
+    <div class="through">
+      <div>
+        <p>The question is always the same: <strong>where (both spatially and temporally) in a physiological signal is the quantifiable pattern that reveals a clinical state?</strong> The modality changes; the instinct doesn't.</p>
+        <p>I studied it first in the brain, modeling functional-connectivity networks from resting-state EEG to track how a clinical intervention reshaped the depressed brain. Now I study it in movement by building computational pipelines that turn XR-captured motion and 6-DoF IMU streams into digital biomarkers of musculoskeletal pathology.</p>
+        <p>I'm also an engineer, not only a researcher. Two years shipping production backend systems means I bring discipline to research code, by making it clean, reusable, and built so the clinicians and scientists around me can stand on it.</p>
+      </div>
+      <div class="chain">
+        <h4>From raw signal to decision</h4>
+        <div class="chain-step"><span class="k">Acquire</span><span class="v">EEG · IMU · XR motion</span></div>
+        <div class="chain-step"><span class="k">Represent</span><span class="v">SSL · transfer · graph features</span></div>
+        <!-- <div class="chain-step"><span class="k">Validate</span><span class="v">LOSO-CV · leakage-aware</span></div> -->
+        <div class="chain-step"><span class="k">Interpret</span><span class="v">feature importance · channel or state importance</span></div>
+        <div class="chain-step"><span class="k">Translate</span><span class="v">clinician-ready biomarker</span></div>
+      </div>
     </div>
-    <!-- End #publications -->
+  </div>
+</section>
 
-    <div id="projects">
-        <h2 class="heading">Featured Projects</h2>
-        <div class="container">
-            <div class="row">
-                <div class="project shadow-large no-image">
-                    <div class="project-info">
-                        <h3>Subject-Invariant EEG Decoding (NeurIPS 2025 Challenge)</h3>
-                        <p>
-                            Designed a subject-invariant EEG decoding model integrating spatial convolutions, multi-temporal feature extraction, and Mixture-of-Experts architectures to predict reaction time across subjects without calibration. Enables robust, generalizable EEG-based Brain-Computer Interfaces (BCIs) that work effectively across diverse users.
-                        </p>
-                        <p><strong>Technologies:</strong> PyTorch, EEG Signal Processing, Transformers, Mixture-of-Experts, Transfer Learning</p>
-                    </div>
-                </div>
+<div class="sec-divider"></div>
 
-                <div class="project shadow-large no-image">
-                    <div class="project-info">
-                        <h3>Transformer-Based Soccer Action Spotting & Captioning</h3>
-                        <p>
-                            Developed a Transformer-based action spotting pipeline with positional encoding and attention pooling for temporal localization across 716+ hours of soccer video. Achieved improved mean Average Precision (mAP) for detecting key game events, enabling scalable and efficient downstream captioning and highlight generation.
-                        </p>
-                        <p><strong>Technologies:</strong> PyTorch, Transformers, Computer Vision, Video Understanding, Attention Mechanisms</p>
-                    </div>
-                </div>
+<!-- RESEARCH -->
+<section id="research">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Research &amp; publications</h2></div>
 
-                <div class="project shadow-large no-image">
-                    <div class="project-info">
-                        <h3>Human-Centered AI Dashboard for Clinical XR Systems</h3>
-                        <p>
-                            Conducted user research and design analysis to derive actionable recommendations for an AI-assisted XR dashboard supporting clinical decision-making workflows. Focused on enhancing usability, interpretability, and trust in AI-driven clinical tools through human-centered design principles.
-                        </p>
-                        <p><strong>Focus Areas:</strong> UX Research, Human-Computer Interaction, Clinical Workflow Design, AI Explainability</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="pub">
+      <div class="pub-meta"><span class="pub-year">2026</span><span class="tag review">Under Review</span></div>
+      <div>
+        <div class="pub-title">Machine Learning Classification of Shoulder Pathology Within a Clinically Informed Extended Reality–Based Functional Assessment Framework: Proof-of-Concept Study</div>
+        <div class="pub-venue">JMIR XR and Spatial Computing · first author</div>
+        <div class="pub-authors"><b>V. Singh</b>, N. Miner, C. Myers, M. Chiu, C. Harteveld, R. Lohre, C. M. Bono, A. Sathyanarayana</div>
+      </div>
     </div>
-    <!-- End #projects -->
 
-    <div id="skills">
-        <h2 class="heading">Technical Skills</h2>
-        
-        <h3 class="skill-header">Machine Learning & AI</h3>
+    <div class="pub">
+      <div class="pub-meta"><span class="pub-year">2026</span><span class="tag prep">In Preparation</span></div>
+      <div>
+        <div class="pub-title">Hidden Markov Modeling for Biomechanical Phenotyping and Classification of Shoulder Pathology in Extended Reality</div>
+        <div class="pub-venue">Manuscript in preparation · first author</div>
+        <div class="pub-authors"><b>V. Singh</b> et al.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-meta"><span class="pub-year">2025</span><span class="tag published">Systematic Review</span></div>
+      <div>
+        <div class="pub-title">Wearable Inertial Sensors and Machine Learning for Clinical Assessment of Human Movement: A Systematic Review of Health-Based Applications</div>
+        <div class="pub-venue">Systematic review · second author</div>
+        <div class="pub-authors">N. Miner, <b>V. Singh</b>, K. Pickrell, K. Gill, I. Freeman, M. Chiu, R. Lohre, A. Sathyanarayana, C. Harteveld, C. M. Bono</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-meta"><span class="pub-year">2024</span><span class="tag preprint">Technical Report</span></div>
+      <div>
+        <div class="pub-title">Evaluating tDCS Intervention Effectiveness via Functional Connectivity Networks on Resting-State EEG in Major Depressive Disorder</div>
+        <div class="pub-venue">Technical report · first author · clinical collaboration with AIIMS Delhi</div>
+        <div class="pub-authors"><b>V. Singh</b>, R. Verma, S. Shriyam, T. K. Gandhi</div>
+        <a class="pub-link" href="https://arxiv.org/abs/2411.06359" target="_blank" rel="noopener">arXiv:2411.06359 →</a>
+      </div>
+    </div>
+
+    <p style="margin-top:26px;color:var(--faint);font-family:var(--mono);font-size:13px">Thesis in progress — <span style="color:var(--muted)">Do EEG representations transfer? A self-supervised benchmark across subjects, tasks, paradigms, and modalities (HBN-EEG).</span></p>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Selected work</h2></div>
+    <div class="grid2">
+
+    
+      <div class="card">
+        <div class="thumb"><img src="images/fm.png" data-base="images/fm" data-i="0" alt="IMU foundation-model benchmark figure" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="card-body">
+          <div class="ptag">Foundation models · Benchmarking</div>
+          <h3>IMU Foundation-Model Benchmark</h3>
+          <p>Leakage-aware harness evaluating four pretrained models — SSLWearables, UniMTS, MOMENT, and ImageBind — on patient-vs-control classification, under frozen linear probing and full fine-tuning across full- and few-shot regimes, to test whether general-population pretraining transfers to clinical cohorts.</p>
+          <div class="stack">Self-supervised learning · transfer · clinical IMU</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb"><img src="images/jmir.png" data-base="images/jmir" data-i="0" alt="Shoulder pathology classification figure" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="card-body">
+          <div class="ptag">Clinical ML · IMU</div>
+          <h3>Shoulder Pathology Classification from XR Motion</h3>
+          <p>Deep-learning baselines (1D-CNN, LSTM/GRU, Transformer) on 6-DoF IMU sequences with subject-level LOSO cross-validation across 60 subjects, plus an HMM pipeline for biomechanical phenotyping that narrowed 24 task-paradigm combinations to the informative subset.</p>
+          <div class="metric"><span class="big">85–91%</span><span class="lbl">balanced accuracy · proof-of-concept</span></div>
+          <div class="stack">PyTorch · Neural Nets · HMM · LOSO · feature importance</div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="thumb"><img src="images/soccer.png" data-base="images/soccer" data-i="0" alt="Transformer action-spotting figure" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="card-body">
+          <div class="ptag">Transformers · Video</div>
+          <h3>Transformer Soccer Action Spotting</h3>
+          <p>Temporal action-spotting pipeline on SoccerNet v2 (471 matches, 716+ hrs) with positional encoding and 8-head attention pooling over pre-extracted ResNet embeddings — modular and scalable for downstream captioning.</p>
+          <div class="metric"><span class="big">34.7%</span><span class="lbl">val mAP · ~2× AVG-pool baseline</span></div>
+          <div class="card-foot"><a href="https://github.com/vishwanisingh/SoccerNetCaption" target="_blank" rel="noopener">↗ GitHub</a></div>
+        </div>
+      </div>
+
+    <div class="card">
+        <div class="thumb"><img src="images/eeg.png" data-base="images/eeg" data-i="0" alt="Subject-invariant EEG decoding figure" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="card-body">
+          <div class="ptag">EEG · Representation learning</div>
+          <h3>Subject-Invariant EEG Decoding</h3>
+          <p>Cross-subject reaction-time decoding for the NeurIPS 2025 EEG Challenge with no per-subject calibration. Combined spatial-convolution filters, multi-temporal kernels, and a Mixture-of-Experts head with custom load-balancing losses.</p>
+          <div class="metric"><span class="big">0.3609</span><span class="lbl">RMSE · vs 0.3914 baseline</span></div>
+          <div class="stack">PyTorch · Mixture-of-Experts · BCI</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb"><img src="images/xai.png" data-base="images/xai" data-i="0" alt="XAI Healthcare dashboard" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="card-body">
+          <div class="ptag">Human-centered AI · RAG</div>
+          <h3>XAI Dashboard for Clinical XR</h3>
+          <p>Explainable decision-support dashboard for orthopedic and rehab clinicians, grounded in user research. A three-stage framework: Glance, Scan, Investigate, paired with a Gemini-powered RAG assistant tuned to clinical guidelines.</p>
+          <div class="card-foot"><a href="https://github.com/AkhilKas/XAI-Healthcare" target="_blank" rel="noopener">↗ GitHub</a></div>
+          <div class="stack">React · Python · RAG · LLMs</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb"><img src="images/rrs.png" data-base="images/rrs" data-i="0" alt="Royal Rumble multi-agent simulation" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="card-body">
+          <div class="ptag">Reinforcement learning</div>
+          <h3>Multi-Agent Royal Rumble Simulation</h3>
+          <p>Custom non-stationary multi-agent environment combining PPO with evolutionary learning, used simulated annealing for initiator selection and genetic algorithms to evolve weaker agents, surfacing emergent mixed strategies over 10,000+ episodes.</p>
+          <div class="metric"><span class="big">+133%</span><span class="lbl">avg fitness via GA evolution</span></div>
+          <div class="card-foot"><a href="https://github.com/vishwanisingh/royal-rumble-simulation" target="_blank" rel="noopener">↗ GitHub</a></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Experience</h2></div>
+
+    <div class="xp">
+      <div class="xp-when">Jan 2026 — Present</div>
+      <div>
+        <div class="xp-org">Massachusetts General Hospital</div>
+        <div class="xp-role">Applied AI Scientist Co-op · OASIIS Lab</div>
         <ul>
-            <li>Deep Learning</li>
-            <li>Computer Vision</li>
-            <li>Time Series Analysis</li>
-            <li>Digital Signal Processing</li>
-            <li>CNNs</li>
-            <li>RNNs & LSTMs</li>
-            <li>Transformers</li>
-            <li>Prototypical Networks</li>
-            <li>Few-Shot Learning</li>
-            <li>Transfer Learning</li>
-            <li>Digital Biomarker Discovery</li>
-            <li>Computational Neuroscience</li>
-            <li>Explainable AI</li>
-            <li>Graph Neural Networks</li>
-            <li>Statistics</li>
-            <li>PyTorch</li>
-            <li>scikit-learn</li>
-            <li>Pandas</li>
-            <li>NumPy</li>
-            <li>Hugging Face</li>
-            <li>MLflow</li>
-            <li>Weights & Biases</li>
-            <li>Feature Engineering</li>
-            <li>Model Evaluation</li>
+          <li>Lead development of an IMU-based foundation model designed specifically for clinical populations, coordinating XR task-design researchers, software engineers, ML scientists, and surgeons.</li>
+          <li>Designed and built the evaluation benchmark assessing self-supervised IMU foundation models on patient-vs-control classification to test whether general-population pretraining transfers to real patients.</li>
         </ul>
-
-        <h3 class="skill-header">MLOps & Deployment</h3>
-        <ul>
-            <li>End-to-end Model Deployment</li>
-            <li>Model Monitoring</li>
-            <li>CI/CD Pipelines</li>
-            <li>Docker</li>
-            <li>Kubernetes</li>
-            <li>TensorBoard</li>
-            <li>A/B Testing</li>
-            <li>Ablation Studies</li>
-            <li>Cross-validation</li>
-            <li>Hyperparameter Tuning</li>
-            <li>GitHub Actions</li>
-        </ul>
-
-        <h3 class="skill-header">Programming & Systems</h3>
-        <ul>
-            <li>Python</li>
-            <li>C++</li>
-            <li>SQL</li>
-            <li>Django</li>
-            <li>Django REST Framework</li>
-            <li>React.js</li>
-            <li>Redux.js</li>
-            <li>RTK Query</li>
-            <li>REST APIs</li>
-            <li>Linux</li>
-            <li>Parallel Processing</li>
-            <li>GPU Computing (CUDA, PyTorch)</li>
-            <li>HPC Clusters</li>
-            <li>Git</li>
-            <li>Distributed Training</li>
-        </ul>
-
-        <h3 class="skill-header">Cloud & Services</h3>
-        <ul>
-            <li>Amazon Web Services (AWS)</li>
-            <li>AWS S3</li>
-            <li>AWS RDS</li>
-            <li>AWS OpenSearch</li>
-            <li>AWS SageMaker</li>
-            <li>AWS EC2</li>
-            <li>Redis</li>
-            <li>ElasticSearch</li>
-        </ul>
+      </div>
     </div>
-    <!-- End #skills -->
 
-    <div id="contact">
-        <h2>Get in Touch</h2>
-        <p style="color: #fff; margin-bottom: 20px;">I'm always interested in discussing new opportunities in Applied AI, Healthcare ML, and research collaborations.</p>
-        <div id="contact-form">
-            <form method="POST" action="mailto:vishwanisingh@gmail.com" enctype="text/plain">
-                <input type="hidden" name="_subject" value="Contact request from personal website" />
-                <input type="email" name="_replyto" placeholder="Your email" required>
-                <textarea name="message" placeholder="Your message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </div>
-        <!-- End #contact-form -->
+    <div class="xp">
+      <div class="xp-when">Mar 2025 — Dec 2025</div>
+      <div>
+        <div class="xp-org">Massachusetts General Hospital</div>
+        <div class="xp-role">Graduate Research Assistant · OASIIS Lab × NEU SATH Lab</div>
+        <ul>
+          <li>Built computational pipelines for digital-biomarker discovery from XR-captured movement across clinical populations.</li>
+          <li>Created a full diagnostic + interpretability toolkit (generalization gap, gradient flow, saliency, feature importance) and a standardized framework to evaluate any ML model on IMU data without rebuilding the pipeline.</li>
+        </ul>
+      </div>
     </div>
-    <!-- End #contact -->
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5 copyright">
-                    <p>
-                        Copyright &copy; <span id="current-year">2025</span> VISHWANI SINGH
-                    </p>
-                </div>
-                <div class="col-sm-2 top">
-                    <span id="to-top">
-                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="col-sm-5 social">
-                    <ul>
-                        <li>
-                            <a href="https://github.com/vishwanisingh" target="_blank"><i class="fa fa-github"
-                                    aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://stackexchange.com/users/15632654/vishwani-singh?tab=accounts" target="_blank"><i class="fa fa-stack-exchange"
-                                    aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/vishwanisingh/" target="_blank"><i class="fa fa-linkedin"
-                                    aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                            <a href="mailto:vishwanisingh@gmail.com"><i class="fa fa-envelope"
-                                    aria-hidden="true"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="xp">
+      <div class="xp-when">Sep 2025 — Dec 2025</div>
+      <div>
+        <div class="xp-org">Northeastern University</div>
+        <div class="xp-role">Teaching Assistant · CS 5800 Algorithms</div>
+        <ul>
+          <li>Supported instruction, grading, office hours, and exams for a graduate algorithms course.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp">
+      <div class="xp-when">Sep 2023 — Jul 2024</div>
+      <div>
+        <div class="xp-org">Indian Institute of Technology Delhi, IN</div>
+        <div class="xp-role">Senior Research Fellow · Dept. of Electrical Engineering</div>
+        <ul>
+          <li>Developed graph-theoretic EEG functional-connectivity algorithms to quantify tDCS treatment effects and identify neural biomarkers in MDD patients, in clinical collaboration with the Dept. of Psychiatry, AIIMS Delhi.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp">
+      <div class="xp-when">Sep 2021 — Aug 2023</div>
+      <div>
+        <div class="xp-org">GeeksforGeeks, IN</div>
+        <div class="xp-role">Software Engineer → Software Engineer II</div>
+        <ul>
+          <li>Built and optimized scalable backend infrastructure for ML-driven search, ranking, and content-discovery workflows under high traffic, serving ~1M assets (0.46M posts, 10.5K course posts, 40K media files).</li>
+          <li>Led the ElasticSearch / AWS OpenSearch rollout for retrieval - improving post-search speed ~200% and time efficiency ~2.5×.</li>
+          <li>Designed read/write database routing with AWS RDS read replicas to balance load and cut costs, and built scheduling/backdating publishing that reduced API hits ~50%.</li>
+          <li>Used Django signals for activity tracking and RTK Query for efficient data fetching and caching, keeping the codebase clean and maintainable.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Toolkit</h2></div>
+    <div class="skill-grid">
+      <div class="skill-col">
+        <h4>ML &amp; AI</h4>
+        <div class="chips">
+          <span class="chip">Deep Learning</span><span class="chip">Self-Supervised Learning</span><span class="chip">Representation Learning</span><span class="chip">Transfer Learning</span><span class="chip">Transformers</span><span class="chip">Mixture-of-Experts</span><span class="chip">LSTM / GRU</span><span class="chip">CNN</span><span class="chip">HMM</span><span class="chip">Graph Theory</span><span class="chip">RAG / LLMs</span><span class="chip">Time-Series</span><span class="chip">Signal Processing</span>
         </div>
-    </footer>
-    <!-- End footer -->
+      </div>
+      <div class="skill-col">
+        <h4>Engineering</h4>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">PyTorch / CUDA</span><span class="chip">SQL</span><span class="chip">Django / DRF</span><span class="chip">React.js</span><span class="chip">REST APIs</span><span class="chip">HPC clusters</span><span class="chip">Docker</span><span class="chip">Git / Actions</span><span class="chip">AWS (S3, OpenSearch, EC2)</span><span class="chip">Redis</span><span class="chip">Hugging Face</span><span class="chip">Weights &amp; Biases</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h4>Clinical &amp; Research</h4>
+        <div class="chips">
+          <span class="chip">Digital Biomarker Discovery</span><span class="chip">Computational Neuroscience</span><span class="chip">Clinical / Translational AI</span><span class="chip">Biomechanical Analysis</span><span class="chip">XR Movement Assessment</span><span class="chip">EEG / IMU</span><span class="chip">LOSO Cross-Validation</span><span class="chip">Ablation Studies</span><span class="chip">Permutation Testing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/scripts.js"></script>
+<div class="sec-divider"></div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <div class="eyebrow">Open to roles</div>
+    <h2>Let's put models on<br>real human signal.</h2>
+    <p>I'm looking for AI Applied Scientist / ML Engineer roles in digital health, wearables, and digital biomarkers where teams are putting models on real human signal data and into real clinical or product use.</p>
+    <div class="links">
+      <a class="btn primary" href="mailto:vishwanisingh@gmail.com">Email me</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/vishwanisingh" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/vishwanisingh" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="https://stackexchange.com/users/15632654/vishwani-singh?tab=accounts" target="_blank" rel="noopener">Stack Exchange</a>
+      <a class="btn ghost" href="https://scholar.google.com/citations?user=_SEtWwcAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+      <a class="btn ghost" href="https://orcid.org/0009-0009-1940-7656" target="_blank" rel="noopener">ORCID</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;width:100%;flex-wrap:wrap;gap:10px">
+    <span>© 2026 Vishwani Singh</span>
+    <!-- <span>MS Artificial Intelligence · Northeastern University</span> -->
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- generate a physiological-looking signal path ----
+  var W = 1000, H = 140, mid = 70, N = 240;
+  function buildPath(seed){
+    var d = "", x, y;
+    for(var i=0;i<=N;i++){
+      x = (i/N)*W;
+      var t = i/N*Math.PI*2;
+      // sum of components: slow drift + alpha-ish + occasional spike + jitter
+      y = mid
+        + Math.sin(t*3 + seed)*16
+        + Math.sin(t*11 + seed*2)*7
+        + Math.sin(t*23 + seed)*3.2;
+      // sparse sharp events (ECG/spike-like)
+      var ph = (i + seed*40) % 60;
+      if(ph < 3) y -= 22*Math.exp(-Math.pow(ph-1,2));
+      y += (Math.sin(i*12.9898+seed)*43758.5453 % 1)*2.4 - 1.2;
+      d += (i===0?"M":"L") + x.toFixed(1) + " " + y.toFixed(1) + " ";
+    }
+    return d;
+  }
+
+  var bg = document.getElementById('traceBg');
+  var live = document.getElementById('traceLive');
+  var head = document.getElementById('head');
+  var d = buildPath(1.0);
+  bg.setAttribute('d', d);
+  live.setAttribute('d', d);
+
+  var total = live.getTotalLength();
+  live.style.strokeDasharray = total;
+
+  if(reduce){
+    live.style.strokeDashoffset = 0;
+    head.style.display = 'none';
+  } else {
+    var start = null, dur = 4200;
+    function frame(ts){
+      if(!start) start = ts;
+      var p = ((ts - start) % dur) / dur;        // 0..1 sweep
+      live.style.strokeDashoffset = total * (1 - p);
+      var pt = live.getPointAtLength(total * p);
+      head.setAttribute('cx', pt.x);
+      head.setAttribute('cy', pt.y);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ---- scroll reveal ----
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
 </body>
-
 </html>
