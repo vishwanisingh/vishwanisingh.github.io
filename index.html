@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vishwani Singh - AI Applied Scientist</title>
-<meta name="description" content="Vishwani Singh - AI Applied Scientist working on machine learning for wearable and movement data in clinical populations. IMU foundation models, EEG biomarkers, digital health.">
+<title>Vishwani Singh - Applied AI Scientist</title>
+<meta name="description" content="Vishwani Singh - Applied AI Scientist working on machine learning for physiological and movement signals in clinical populations. Movement foundation models, EEG biomarkers, digital health.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -65,7 +65,7 @@
   h1{font-family:var(--display);font-weight:700;font-size:clamp(44px,8vw,86px);line-height:.98;letter-spacing:-.02em}
   .thesis{font-family:var(--display);font-weight:500;font-size:clamp(18px,3vw,26px);color:var(--ink);margin:26px 0 0;line-height:1.3}
   .thesis .arrow{color:var(--pulse)}
-  .lede{max-width:620px;color:var(--muted);font-size:18px;margin-top:22px}
+  .lede{max-width:640px;color:var(--muted);font-size:18px;margin-top:22px}
   .lede strong{color:var(--ink);font-weight:600}
   .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
   .btn{font-family:var(--mono);font-size:13px;letter-spacing:.03em;padding:12px 20px;border-radius:8px;border:1px solid var(--line);transition:all .2s;display:inline-flex;align-items:center;gap:8px}
@@ -115,6 +115,7 @@
   .pub-venue{color:var(--muted);font-size:14px}
   .pub-authors{color:var(--faint);font-size:13px;margin-top:8px;font-family:var(--mono)}
   .pub-authors b{color:var(--signal);font-weight:500}
+  .pub-note{color:var(--muted);font-size:14px;margin-top:10px;border-left:2px solid var(--line);padding-left:12px}
   .pub-link{font-family:var(--mono);font-size:12px;color:var(--signal);margin-top:10px;display:inline-block}
   .pub-link:hover{text-decoration:underline}
 
@@ -216,14 +217,13 @@
 <header id="top">
   <div class="wrap">
     <img class="avatar" src="images/profile-pic.png" alt="Vishwani Singh" onerror="this.style.display='none'">
-    <div class="eyebrow">AI Applied Science · Digital Health &amp; Wearables</div>
+    <div class="eyebrow">Applied AI Science · Health &amp; Sensing</div>
     <h1>Machine learning<br>on human signal.</h1>
     <p class="thesis">Signal in <span class="arrow">→</span> interpretable biomarker out</p>
-    <p class="lede">I build ML for wearable and movement data in <strong>clinical populations</strong>, the regulated, messy, real-world kind. Currently leading an <strong>IMU foundation model</strong> at Mass General's OASIIS Lab, built to hold up on real patients where general-population models fall short.</p>
+    <p class="lede">I build ML for physiological and movement data in <strong>clinical populations</strong> - the regulated, messy, real-world kind. At Mass General's OASIIS Lab I ran the first benchmark of <strong>movement foundation models</strong> on patient motion, and found that healthy-population pretraining doesn't transfer the way the field assumes.</p>
     <div class="cta-row">
       <a class="btn primary" href="#research">View research</a>
       <a class="btn ghost" href="Singh_Vishwani_Resume.pdf">Download CV</a>
-      <!-- <a class="btn ghost" href="https://scholar.google.com/citations?user=_SEtWwcAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> -->
     </div>
 
     <div class="scope" aria-hidden="true">
@@ -247,16 +247,17 @@
     <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">The through-line</h2></div>
     <div class="through">
       <div>
-        <p>The question is always the same: <strong>where (both spatially and temporally) in a physiological signal is the quantifiable pattern that reveals a clinical state?</strong> The modality changes; the instinct doesn't.</p>
-        <p>I studied it first in the brain, modeling functional-connectivity networks from resting-state EEG to track how a clinical intervention reshaped the depressed brain. Now I study it in movement by building computational pipelines that turn XR-captured motion and 6-DoF IMU streams into digital biomarkers of musculoskeletal pathology.</p>
-        <p>I'm also an engineer, not only a researcher. Two years shipping production backend systems means I bring discipline to research code, by making it clean, reusable, and built so the clinicians and scientists around me can stand on it.</p>
+        <p>The question is always the same: <strong>where in a physiological signal (both spatially and temporally) is the quantifiable pattern that reveals a clinical state?</strong> The modality changes; the instinct doesn't.</p>
+        <p>I studied it first in the brain, modeling functional-connectivity networks from resting-state EEG to track how a clinical intervention reshaped the depressed brain. Now I study it in movement, building pipelines that turn XR-captured motion and 6-DoF IMU streams into digital biomarkers of musculoskeletal pathology.</p>
+        <p>Running through both: <strong>does a representation learned on one population transfer to another?</strong> Healthy to patient, subject to subject, session to session. It's the question my thesis asks of EEG and my benchmark work asks of movement, and the reason I build the baselines that reveal when an apparent signal is really something else.</p>
+        <p>I'm an engineer as much as a researcher. Two years shipping production backend systems means I bring discipline to research code: clean, reusable, and built so the clinicians and scientists around me can stand on it.</p>
       </div>
       <div class="chain">
         <h4>From raw signal to decision</h4>
         <div class="chain-step"><span class="k">Acquire</span><span class="v">EEG · IMU · XR motion</span></div>
         <div class="chain-step"><span class="k">Represent</span><span class="v">SSL · transfer · graph features</span></div>
-        <!-- <div class="chain-step"><span class="k">Validate</span><span class="v">LOSO-CV · leakage-aware</span></div> -->
-        <div class="chain-step"><span class="k">Interpret</span><span class="v">feature importance · channel or state importance</span></div>
+        <div class="chain-step"><span class="k">Control</span><span class="v">demographic &amp; random-init baselines</span></div>
+        <div class="chain-step"><span class="k">Interpret</span><span class="v">channel · state · feature attribution</span></div>
         <div class="chain-step"><span class="k">Translate</span><span class="v">clinician-ready biomarker</span></div>
       </div>
     </div>
@@ -271,29 +272,41 @@
     <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Research &amp; publications</h2></div>
 
     <div class="pub">
-      <div class="pub-meta"><span class="pub-year">2026</span><span class="tag review">Under Review</span></div>
-      <div>
-        <div class="pub-title">Machine Learning Classification of Shoulder Pathology Within a Clinically Informed Extended Reality–Based Functional Assessment Framework: Proof-of-Concept Study</div>
-        <div class="pub-venue">JMIR XR and Spatial Computing · first author</div>
-        <div class="pub-authors"><b>V. Singh</b>, N. Miner, C. Myers, M. Chiu, C. Harteveld, R. Lohre, C. M. Bono, A. Sathyanarayana</div>
-      </div>
-    </div>
-
-    <div class="pub">
       <div class="pub-meta"><span class="pub-year">2026</span><span class="tag prep">In Preparation</span></div>
       <div>
-        <div class="pub-title">Hidden Markov Modeling for Biomechanical Phenotyping and Classification of Shoulder Pathology in Extended Reality</div>
-        <div class="pub-venue">Manuscript in preparation · first author</div>
+        <div class="pub-title">Evaluating and Adapting Movement Foundation Models for Pathology Sensitivity and Task Invariance</div>
+        <div class="pub-venue">In preparation · first author</div>
         <div class="pub-authors"><b>V. Singh</b> et al.</div>
+        <div class="pub-note">The first benchmark of movement foundation models on an IRB-governed clinical cohort. Healthy-population pretraining turns out to be task-dependent rather than a general prior.</div>
       </div>
     </div>
 
     <div class="pub">
-      <div class="pub-meta"><span class="pub-year">2025</span><span class="tag published">Systematic Review</span></div>
+      <div class="pub-meta"><span class="pub-year">2026</span><span class="tag review">Under Review</span></div>
+      <div>
+        <div class="pub-title">Biomechanical Phenotyping and Classification of Shoulder Pathology with Hidden Markov Modeling and Extended Reality</div>
+        <div class="pub-venue">IEEE Journal of Biomedical and Health Informatics · first author</div>
+        <div class="pub-authors"><b>V. Singh</b> et al.</div>
+        <div class="pub-note">A generative alternative to black-box classification: latent states that read as movement phases, and that surface compensation a class label hides.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-meta"><span class="pub-year">2026</span><span class="tag review">Under Review</span></div>
       <div>
         <div class="pub-title">Wearable Inertial Sensors and Machine Learning for Clinical Assessment of Human Movement: A Systematic Review of Health-Based Applications</div>
-        <div class="pub-venue">Systematic review · second author</div>
+        <div class="pub-venue">Journal of NeuroEngineering and Rehabilitation · second author</div>
         <div class="pub-authors">N. Miner, <b>V. Singh</b>, K. Pickrell, K. Gill, I. Freeman, M. Chiu, R. Lohre, A. Sathyanarayana, C. Harteveld, C. M. Bono</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-meta"><span class="pub-year">2026</span><span class="tag review">Minor Revision</span></div>
+      <div>
+        <div class="pub-title">Standardized Extended Reality Task Delivery and Kinematic Classification of Shoulder Pathology: Proof-of-Concept Study</div>
+        <div class="pub-venue">JMIR XR and Spatial Computing · first author</div>
+        <div class="pub-authors"><b>V. Singh</b>, N. Miner, C. Myers, M. Chiu, C. Harteveld, R. Lohre, C. M. Bono, A. Sathyanarayana</div>
+        <div class="pub-note">A study that disproved its own hypothesis. Reference baselines showed a logistic regression on age alone matched every deep model — so we said so, and made the confound the finding.</div>
       </div>
     </div>
 
@@ -307,7 +320,7 @@
       </div>
     </div>
 
-    <p style="margin-top:26px;color:var(--faint);font-family:var(--mono);font-size:13px">Thesis in progress — <span style="color:var(--muted)">Do EEG representations transfer? A self-supervised benchmark across subjects, tasks, paradigms, and modalities (HBN-EEG).</span></p>
+    <p style="margin-top:26px;color:var(--faint);font-family:var(--mono);font-size:13px">Thesis in progress — <span style="color:var(--muted)">Do EEG representations transfer? A systematic benchmark across sessions, subjects, tasks, paradigms, and modalities (HBN-EEG).</span></p>
   </div>
 </section>
 
@@ -319,41 +332,40 @@
     <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Selected work</h2></div>
     <div class="grid2">
 
-    
       <div class="card">
-        <div class="thumb"><img src="images/fm.png" data-base="images/fm" data-i="0" alt="IMU foundation-model benchmark figure" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="thumb"><img src="images/fm.png" data-base="images/fm" data-i="0" alt="Movement foundation-model benchmark figure" loading="lazy" onerror="imgFallback(this)"></div>
         <div class="card-body">
           <div class="ptag">Foundation models · Benchmarking</div>
-          <h3>IMU Foundation-Model Benchmark</h3>
-          <p>Leakage-aware harness evaluating four pretrained models — SSLWearables, UniMTS, MOMENT, and ImageBind — on patient-vs-control classification, under frozen linear probing and full fine-tuning across full- and few-shot regimes, to test whether general-population pretraining transfers to clinical cohorts.</p>
-          <div class="stack">Self-supervised learning · transfer · clinical IMU</div>
+          <h3>Movement Foundation-Model Benchmark</h3>
+          <p>Leakage-aware harness evaluating four pretrained models — SSL-Wearables, UniMTS, MOMENT, ImageBind — across three clinical tasks, four fine-tuning regimes, and three sensor placements, against randomly initialized and demographics-only control arms. Pretraining helped pathology detection everywhere and hurt task recognition in most configurations.</p>
+          <div class="metric"><span class="big">0.91</span><span class="lbl">subject-level ROC-AUC · vs 0.80 age-only baseline</span></div>
+          <div class="stack">Self-supervised learning · transfer · clinical IMU · Slurm</div>
         </div>
       </div>
 
       <div class="card">
         <div class="thumb"><img src="images/jmir.png" data-base="images/jmir" data-i="0" alt="Shoulder pathology classification figure" loading="lazy" onerror="imgFallback(this)"></div>
         <div class="card-body">
-          <div class="ptag">Clinical ML · IMU</div>
+          <div class="ptag">Clinical ML</div>
           <h3>Shoulder Pathology Classification from XR Motion</h3>
-          <p>Deep-learning baselines (1D-CNN, LSTM/GRU, Transformer) on 6-DoF IMU sequences with subject-level LOSO cross-validation across 60 subjects, plus an HMM pipeline for biomechanical phenotyping that narrowed 24 task-paradigm combinations to the informative subset.</p>
-          <div class="metric"><span class="big">85–91%</span><span class="lbl">balanced accuracy · proof-of-concept</span></div>
-          <div class="stack">PyTorch · Neural Nets · HMM · LOSO · feature importance</div>
+          <p>72 deep-learning configurations (1D-CNN, LSTM/GRU, Transformer) on 18-channel 6-DoF sequences under nested leakage-safe LOSO-CV. The reference baselines I built overturned the result: age alone matched every deep model, attribution isolated a height-dependent channel, and error rate tracked participant age.</p>
+          <div class="metric"><span class="big">ρ = 0.46</span><span class="lbl">control misclassification vs age · p = .042</span></div>
+          <div class="stack">PyTorch · integrated gradients · ablation · Holm correction</div>
         </div>
       </div>
-
 
       <div class="card">
-        <div class="thumb"><img src="images/soccer.png" data-base="images/soccer" data-i="0" alt="Transformer action-spotting figure" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="thumb"><img src="images/hmm.png" data-base="images/hmm" data-i="0" alt="HMM biomechanical phenotyping figure" loading="lazy" onerror="imgFallback(this)"></div>
         <div class="card-body">
-          <div class="ptag">Transformers · Video</div>
-          <h3>Transformer Soccer Action Spotting</h3>
-          <p>Temporal action-spotting pipeline on SoccerNet v2 (471 matches, 716+ hrs) with positional encoding and 8-head attention pooling over pre-extracted ResNet embeddings — modular and scalable for downstream captioning.</p>
-          <div class="metric"><span class="big">34.7%</span><span class="lbl">val mAP · ~2× AVG-pool baseline</span></div>
-          <div class="card-foot"><a href="https://github.com/vishwanisingh/SoccerNetCaption" target="_blank" rel="noopener">↗ GitHub</a></div>
+          <div class="ptag">Probabilistic models · Interpretability</div>
+          <h3>Generative Phenotyping with Hidden Markov Models</h3>
+          <p>Class-conditional Gaussian HMMs scoring held-out subjects by likelihood ratio, with latent states that decode into real movement phases rather than arbitrary clusters — surfacing task-dependent compensation a class label hides.</p>
+          <div class="metric"><span class="big">2.7–3.7×</span><span class="lbl">state-boundary alignment to annotated events, above chance</span></div>
+          <div class="stack">Gaussian HMM · Viterbi · permutation importance · FDR</div>
         </div>
       </div>
 
-    <div class="card">
+      <div class="card">
         <div class="thumb"><img src="images/eeg.png" data-base="images/eeg" data-i="0" alt="Subject-invariant EEG decoding figure" loading="lazy" onerror="imgFallback(this)"></div>
         <div class="card-body">
           <div class="ptag">EEG · Representation learning</div>
@@ -369,9 +381,20 @@
         <div class="card-body">
           <div class="ptag">Human-centered AI · RAG</div>
           <h3>XAI Dashboard for Clinical XR</h3>
-          <p>Explainable decision-support dashboard for orthopedic and rehab clinicians, grounded in user research. A three-stage framework: Glance, Scan, Investigate, paired with a Gemini-powered RAG assistant tuned to clinical guidelines.</p>
+          <p>Explainable decision-support dashboard for orthopedic and rehab clinicians, grounded in user research. A three-stage framework — Glance, Scan, Investigate — paired with a Gemini-powered RAG assistant tuned to clinical guidelines.</p>
           <div class="card-foot"><a href="https://github.com/AkhilKas/XAI-Healthcare" target="_blank" rel="noopener">↗ GitHub</a></div>
           <div class="stack">React · Python · RAG · LLMs</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb"><img src="images/soccer.png" data-base="images/soccer" data-i="0" alt="Transformer action-spotting figure" loading="lazy" onerror="imgFallback(this)"></div>
+        <div class="card-body">
+          <div class="ptag">Transformers · Video</div>
+          <h3>Transformer Soccer Action Spotting</h3>
+          <p>Temporal action-spotting pipeline on SoccerNet v2 (471 matches, 716+ hrs) with positional encoding and 8-head attention pooling over pre-extracted ResNet embeddings — modular and scalable for downstream captioning.</p>
+          <div class="metric"><span class="big">34.7%</span><span class="lbl">val mAP · ~2× AVG-pool baseline</span></div>
+          <div class="card-foot"><a href="https://github.com/vishwanisingh/SoccerNetCaption" target="_blank" rel="noopener">↗ GitHub</a></div>
         </div>
       </div>
 
@@ -380,12 +403,11 @@
         <div class="card-body">
           <div class="ptag">Reinforcement learning</div>
           <h3>Multi-Agent Royal Rumble Simulation</h3>
-          <p>Custom non-stationary multi-agent environment combining PPO with evolutionary learning, used simulated annealing for initiator selection and genetic algorithms to evolve weaker agents, surfacing emergent mixed strategies over 10,000+ episodes.</p>
+          <p>Custom non-stationary multi-agent environment combining PPO with evolutionary learning, using simulated annealing for initiator selection and genetic algorithms to evolve weaker agents, surfacing emergent mixed strategies over 10,000+ episodes.</p>
           <div class="metric"><span class="big">+133%</span><span class="lbl">avg fitness via GA evolution</span></div>
           <div class="card-foot"><a href="https://github.com/vishwanisingh/royal-rumble-simulation" target="_blank" rel="noopener">↗ GitHub</a></div>
         </div>
       </div>
-
 
     </div>
   </div>
@@ -399,13 +421,15 @@
     <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Experience</h2></div>
 
     <div class="xp">
-      <div class="xp-when">Jan 2026 — Present</div>
+      <div class="xp-when">Jan 2026 — Sep 2026</div>
       <div>
         <div class="xp-org">Massachusetts General Hospital</div>
-        <div class="xp-role">Applied AI Scientist Co-op · OASIIS Lab</div>
+        <div class="xp-role">Applied AI Scientist, Co-op · OASIIS Lab</div>
         <ul>
-          <li>Lead development of an IMU-based foundation model designed specifically for clinical populations, coordinating XR task-design researchers, software engineers, ML scientists, and surgeons.</li>
-          <li>Designed and built the evaluation benchmark assessing self-supervised IMU foundation models on patient-vs-control classification to test whether general-population pretraining transfers to real patients.</li>
+          <li>Led technical direction for an injury-inclusive movement foundation model, translating between XR task designers, orthopaedic surgeons, and ML engineers to turn clinical assessment needs into model and benchmark specifications.</li>
+          <li>Designed and led the first benchmark of movement foundation models (MOMENT, UniMTS, ImageBind, SSL-Wearables) on an IRB-governed clinical cohort, across pathology detection, task recognition, and healthy-to-patient transfer.</li>
+          <li>Found healthy-population pretraining to be task-dependent: it improved pathology detection for every backbone but degraded task recognition for most, where handcrafted features won outright.</li>
+          <li>Built the evaluation harness end to end — multi-GPU CUDA training on MGH's Slurm enclave, 5-seed replication, leakage-safe subject-level splits, and sensor-agnostic interfaces so a new site's dataset enters as a single adapter.</li>
         </ul>
       </div>
     </div>
@@ -413,11 +437,13 @@
     <div class="xp">
       <div class="xp-when">Mar 2025 — Dec 2025</div>
       <div>
-        <div class="xp-org">Massachusetts General Hospital</div>
+        <div class="xp-org">Massachusetts General Hospital × Northeastern University</div>
         <div class="xp-role">Graduate Research Assistant · OASIIS Lab × NEU SATH Lab</div>
         <ul>
-          <li>Built computational pipelines for digital-biomarker discovery from XR-captured movement across clinical populations.</li>
-          <li>Created a full diagnostic + interpretability toolkit (generalization gap, gradient flow, saliency, feature importance) and a standardized framework to evaluate any ML model on IMU data without rebuilding the pipeline.</li>
+          <li>Built the modeling and evaluation layers of a framework for XR-based kinematic assessment of shoulder pathology, running 72 deep-learning configurations under nested leakage-safe LOSO cross-validation.</li>
+          <li>Established the demographic, task-duration, and classical-ML baselines that reframed the study's conclusion as an age confound rather than a pathology signal.</li>
+          <li>Built a class-conditional HMM pipeline for generative phenotyping, with state posteriors validated against patient-reported outcome scores rather than labels alone.</li>
+          <li>Co-authored a systematic review of wearable inertial sensing and machine learning for clinical movement assessment.</li>
         </ul>
       </div>
     </div>
@@ -434,12 +460,13 @@
     </div>
 
     <div class="xp">
-      <div class="xp-when">Sep 2023 — Jul 2024</div>
+      <div class="xp-when">Sep 2023 — Aug 2024</div>
       <div>
         <div class="xp-org">Indian Institute of Technology Delhi, IN</div>
         <div class="xp-role">Senior Research Fellow · Dept. of Electrical Engineering</div>
         <ul>
-          <li>Developed graph-theoretic EEG functional-connectivity algorithms to quantify tDCS treatment effects and identify neural biomarkers in MDD patients, in clinical collaboration with the Dept. of Psychiatry, AIIMS Delhi.</li>
+          <li>Built a graph-theoretic resting-state EEG functional-connectivity pipeline quantifying the effects of 20 HD-tDCS sessions across theta, alpha, and beta bands in an IRB-approved MDD cohort, in clinical collaboration with the Dept. of Psychiatry, AIIMS Delhi.</li>
+          <li>Contributed an adaptive network binarization method validated against edge-matched random-graph nulls and 1000 permutations, removing the arbitrary-threshold dependence common to graph-EEG studies; identified beta-band small-worldness and DLPFC hubness as candidate response biomarkers.</li>
         </ul>
       </div>
     </div>
@@ -448,12 +475,12 @@
       <div class="xp-when">Sep 2021 — Aug 2023</div>
       <div>
         <div class="xp-org">GeeksforGeeks, IN</div>
-        <div class="xp-role">Software Engineer → Software Engineer II</div>
+        <div class="xp-role">Machine Learning Engineer → Senior MLE</div>
         <ul>
-          <li>Built and optimized scalable backend infrastructure for ML-driven search, ranking, and content-discovery workflows under high traffic, serving ~1M assets (0.46M posts, 10.5K course posts, 40K media files).</li>
-          <li>Led the ElasticSearch / AWS OpenSearch rollout for retrieval - improving post-search speed ~200% and time efficiency ~2.5×.</li>
-          <li>Designed read/write database routing with AWS RDS read replicas to balance load and cut costs, and built scheduling/backdating publishing that reduced API hits ~50%.</li>
-          <li>Used Django signals for activity tracking and RTK Query for efficient data fetching and caching, keeping the codebase clean and maintainable.</li>
+          <li>Built and optimized scalable backend infrastructure for ML-driven search, ranking, and content discovery under high traffic, serving ~1M assets (0.46M posts, 10.5K course posts, 40K media files).</li>
+          <li>Trained and deployed BERT-based query-routing classifiers across 10+ academic domains, cutting human escalations 35% at 50K+ queries/month.</li>
+          <li>Built an embedding-based code-retrieval system and a Neo4j graph recommender matching code errors via AST analysis, adopted by 100K+ users with a 25% higher first-attempt solution rate.</li>
+          <li>Led the Elasticsearch / AWS OpenSearch rollout for retrieval, improving post-search speed ~200%; designed read/write database routing with RDS read replicas to balance load and cut costs.</li>
         </ul>
       </div>
     </div>
@@ -470,19 +497,19 @@
       <div class="skill-col">
         <h4>ML &amp; AI</h4>
         <div class="chips">
-          <span class="chip">Deep Learning</span><span class="chip">Self-Supervised Learning</span><span class="chip">Representation Learning</span><span class="chip">Transfer Learning</span><span class="chip">Transformers</span><span class="chip">Mixture-of-Experts</span><span class="chip">LSTM / GRU</span><span class="chip">CNN</span><span class="chip">HMM</span><span class="chip">Graph Theory</span><span class="chip">RAG / LLMs</span><span class="chip">Time-Series</span><span class="chip">Signal Processing</span>
+          <span class="chip">Deep Learning</span><span class="chip">Self-Supervised Learning</span><span class="chip">Representation Learning</span><span class="chip">Transfer Learning</span><span class="chip">Foundation Models</span><span class="chip">Transformers</span><span class="chip">Mixture-of-Experts</span><span class="chip">LSTM / GRU</span><span class="chip">CNN</span><span class="chip">HMM</span><span class="chip">Graph Theory</span><span class="chip">RAG / LLMs</span><span class="chip">Time-Series</span><span class="chip">Signal Processing</span>
         </div>
       </div>
       <div class="skill-col">
         <h4>Engineering</h4>
         <div class="chips">
-          <span class="chip">Python</span><span class="chip">PyTorch / CUDA</span><span class="chip">SQL</span><span class="chip">Django / DRF</span><span class="chip">React.js</span><span class="chip">REST APIs</span><span class="chip">HPC clusters</span><span class="chip">Docker</span><span class="chip">Git / Actions</span><span class="chip">AWS (S3, OpenSearch, EC2)</span><span class="chip">Redis</span><span class="chip">Hugging Face</span><span class="chip">Weights &amp; Biases</span>
+          <span class="chip">Python</span><span class="chip">PyTorch / CUDA</span><span class="chip">Multi-GPU training</span><span class="chip">SQL</span><span class="chip">Django / DRF</span><span class="chip">React.js</span><span class="chip">REST APIs</span><span class="chip">HPC / Slurm</span><span class="chip">Docker</span><span class="chip">Git / Actions</span><span class="chip">AWS (S3, OpenSearch, EC2)</span><span class="chip">Redis</span><span class="chip">Neo4j</span><span class="chip">Hugging Face</span><span class="chip">Weights &amp; Biases</span>
         </div>
       </div>
       <div class="skill-col">
-        <h4>Clinical &amp; Research</h4>
+        <h4>Evaluation &amp; Clinical</h4>
         <div class="chips">
-          <span class="chip">Digital Biomarker Discovery</span><span class="chip">Computational Neuroscience</span><span class="chip">Clinical / Translational AI</span><span class="chip">Biomechanical Analysis</span><span class="chip">XR Movement Assessment</span><span class="chip">EEG / IMU</span><span class="chip">LOSO Cross-Validation</span><span class="chip">Ablation Studies</span><span class="chip">Permutation Testing</span>
+          <span class="chip">Leakage-Aware Evaluation</span><span class="chip">LOSO Cross-Validation</span><span class="chip">Reference Baselines</span><span class="chip">Confound Analysis</span><span class="chip">Ablation Studies</span><span class="chip">Permutation Testing</span><span class="chip">Feature Attribution</span><span class="chip">Digital Biomarker Discovery</span><span class="chip">IRB Data Workflows</span><span class="chip">Clinical / Translational AI</span><span class="chip">EEG / IMU</span>
         </div>
       </div>
     </div>
@@ -494,9 +521,9 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="wrap reveal">
-    <div class="eyebrow">Open to roles</div>
+    <div class="eyebrow">Open to full-time roles</div>
     <h2>Let's put models on<br>real human signal.</h2>
-    <p>I'm looking for AI Applied Scientist / ML Engineer roles in digital health, wearables, and digital biomarkers where teams are putting models on real human signal data and into real clinical or product use.</p>
+    <p>I'm looking for Applied AI Scientist / ML Engineer roles in digital health, wearables, neurotech, and digital biomarkers — where teams are putting models on real human signal data and into real clinical or product use.</p>
     <div class="links">
       <a class="btn primary" href="mailto:vishwanisingh@gmail.com">Email me</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/vishwanisingh" target="_blank" rel="noopener">LinkedIn</a>
@@ -511,7 +538,6 @@
 <footer>
   <div class="wrap" style="display:flex;justify-content:space-between;width:100%;flex-wrap:wrap;gap:10px">
     <span>© 2026 Vishwani Singh</span>
-    <!-- <span>MS Artificial Intelligence · Northeastern University</span> -->
   </div>
 </footer>
 
@@ -526,12 +552,10 @@
     for(var i=0;i<=N;i++){
       x = (i/N)*W;
       var t = i/N*Math.PI*2;
-      // sum of components: slow drift + alpha-ish + occasional spike + jitter
       y = mid
         + Math.sin(t*3 + seed)*16
         + Math.sin(t*11 + seed*2)*7
         + Math.sin(t*23 + seed)*3.2;
-      // sparse sharp events (ECG/spike-like)
       var ph = (i + seed*40) % 60;
       if(ph < 3) y -= 22*Math.exp(-Math.pow(ph-1,2));
       y += (Math.sin(i*12.9898+seed)*43758.5453 % 1)*2.4 - 1.2;
@@ -557,7 +581,7 @@
     var start = null, dur = 4200;
     function frame(ts){
       if(!start) start = ts;
-      var p = ((ts - start) % dur) / dur;        // 0..1 sweep
+      var p = ((ts - start) % dur) / dur;
       live.style.strokeDashoffset = total * (1 - p);
       var pt = live.getPointAtLength(total * p);
       head.setAttribute('cx', pt.x);
